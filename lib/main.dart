@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:training_app/features/home/views/home_page.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class TrainingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Training App',
       theme: ThemeData(primaryColor: Colors.blue),
       debugShowCheckedModeBanner: false,
