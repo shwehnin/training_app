@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         info = json.decode(value);
       });
-      print("Info json $json");
     });
   }
 
@@ -195,20 +194,25 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Expanded(child: Container()),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(60),
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: const Offset(4, 8),
-                                  blurRadius: 10,
-                                  color: AppColors.gradientFirst,
-                                ),
-                              ]),
-                          child: const Icon(
-                            Icons.play_circle_fill,
-                            size: 60,
-                            color: Colors.white,
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => const VideoInfo());
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(60),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(4, 8),
+                                    blurRadius: 10,
+                                    color: AppColors.gradientFirst,
+                                  ),
+                                ]),
+                            child: const Icon(
+                              Icons.play_circle_fill,
+                              size: 60,
+                              color: Colors.white,
+                            ),
                           ),
                         )
                       ],
@@ -220,7 +224,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 5,
             ),
-            Container(
+            SizedBox(
               height: 180,
               width: MediaQuery.of(context).size.width,
               child: Stack(

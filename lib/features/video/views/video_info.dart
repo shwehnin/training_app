@@ -197,38 +197,36 @@ class _VideoInfoState extends State<VideoInfo> {
                       ],
                     ),
                   )
-                : Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 90,
-                          padding: const EdgeInsets.only(
-                              top: 20, left: 20, right: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Icon(
-                                  Icons.arrow_back_ios,
-                                  size: 20,
-                                  color: AppColors.secondPageTopIconColor,
-                                ),
-                              ),
-                              Icon(
-                                Icons.info_outline,
+                : Column(
+                    children: [
+                      Container(
+                        height: 90,
+                        padding:
+                            const EdgeInsets.only(top: 20, left: 20, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back_ios,
                                 size: 20,
                                 color: AppColors.secondPageTopIconColor,
                               ),
-                            ],
-                          ),
+                            ),
+                            Icon(
+                              Icons.info_outline,
+                              size: 20,
+                              color: AppColors.secondPageTopIconColor,
+                            ),
+                          ],
                         ),
-                        _playView(context),
-                        _controlView(context),
-                      ],
-                    ),
+                      ),
+                      _playView(context),
+                      _controlView(context),
+                    ],
                   ),
             Expanded(
               child: Container(
@@ -312,7 +310,7 @@ class _VideoInfoState extends State<VideoInfo> {
   }
 
   _videoCard(int index) {
-    return Container(
+    return SizedBox(
       height: 135,
       child: Column(
         children: [
@@ -410,12 +408,12 @@ class _VideoInfoState extends State<VideoInfo> {
         child: VideoPlayer(controller),
       );
     } else {
-      return const AspectRatio(
+      return AspectRatio(
         aspectRatio: 16 / 9,
         child: Center(
-          child: Text(
-            "Preparing...",
-            style: TextStyle(fontSize: 20, color: Colors.white60),
+          child: CircularProgressIndicator(
+            valueColor:
+                AlwaysStoppedAnimation(AppColors.gradientFirst.withOpacity(.3)),
           ),
         ),
       );
@@ -441,9 +439,7 @@ class _VideoInfoState extends State<VideoInfo> {
     if (!controller.value.isInitialized) {
       return;
     }
-    if (_duration == null) {
-      _duration = _controller?.value.duration;
-    }
+    _duration ??= _controller?.value.duration;
     var duration = _duration;
     if (duration == null) return;
 
